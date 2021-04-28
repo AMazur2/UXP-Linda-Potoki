@@ -1,6 +1,6 @@
 # UXP-Linda-Potoki
 
-## 1. treść zadania. 
+## 1. Treść zadania. 
 
 Napisać wieloprocesowy system realizujący komunikację w języku komunikacyjnym Linda. W uproszczeniu Linda realizuje trzy operacje: 
 
