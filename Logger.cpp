@@ -25,7 +25,8 @@ void Logger::createLoggerFile()
 
 void Logger::writeDate(char *date)
 {
-    streamToLoggerFile << date;
+    string theDate(date);
+    streamToLoggerFile << theDate.substr(0, theDate.size() - 1);
 }
 
 void Logger::write(string s)
