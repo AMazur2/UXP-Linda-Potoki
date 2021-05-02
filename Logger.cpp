@@ -19,8 +19,7 @@ void Logger::createLoggerFile()
     streamToLoggerFile.open(fileName);
 
     if( !streamToLoggerFile)
-        //tutaj dodac rzucanie wyjatkow
-        ;
+        throw runtime_error("Not able to create logger file");
 }
 
 void Logger::writeDate(char *date)
