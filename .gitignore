@@ -148,3 +148,15 @@ build/CMakeFiles/linda-potoki.dir/src/response.cpp.o
 .vscode/settings.json
 build/.cmake/api/v1/reply/index-2021-05-18T12-54-12-0967.json
 build/Testing/Temporary/LastTestsFailed_20210518-0916.log
+build/.cmake/api/v1/reply/codemodel-v2-5d917ea2ffb09bcf765e.json
+build/.cmake/api/v1/reply/index-2021-05-18T14-51-58-0304.json
+build/.cmake/api/v1/reply/target-data_test-Debug-cfea4b3b6a8ee45fafca.json
+build/.cmake/api/v1/reply/target-dataPattern_test-Debug-0137b982d1d523e84fff.json
+build/.cmake/api/v1/reply/target-request_test-Debug-c9450d8bc95f77c1e0e6.json
+build/.cmake/api/v1/reply/target-response_test-Debug-85a8da13593683a39bb9.json
+build/CMakeFiles/dataPattern_test.dir/src/dataPatternElement.cpp.o
+build/CMakeFiles/data_test.dir/src/dataElement.cpp.o
+build/CMakeFiles/request_test.dir/src/data.cpp.o
+build/CMakeFiles/request_test.dir/src/dataElement.cpp.o
+build/CMakeFiles/response_test.dir/src/data.cpp.o
+build/CMakeFiles/response_test.dir/src/dataElement.cpp.o

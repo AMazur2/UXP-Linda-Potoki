@@ -4,4 +4,9 @@
 
 class Response {
     Data data;
+
+public:
+    Response(Data data);
+
+    Data get_data();
 };

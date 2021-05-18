@@ -1,3 +1,4 @@
 #include"dataElement.hpp"
 
-// std::variant<std::string, int, double> DataElement::get_value() {return value;}
+DataElement::DataElement(std::variant<std::string, int, double> s) : value{s} {}
+std::variant<std::string, int, double> DataElement::get_value() {return value;}

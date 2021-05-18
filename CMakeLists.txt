@@ -17,22 +17,22 @@ add_executable(linda-potoki
 
 include(BoostTestHelpers.cmake)
 
-set(DEPS src/data.cpp)
+set(DEPS src/data.cpp src/dataElement.cpp)
 add_boost_test(test/data_test.cpp "${DEPS}")      
 
 set(DEPS src/dataElement.cpp)
 add_boost_test(test/dataElement_test.cpp "${DEPS}")  
 
-set(DEPS src/dataPattern.cpp)
+set(DEPS src/dataPattern.cpp src/dataPatternElement.cpp)
 add_boost_test(test/dataPattern_test.cpp "${DEPS}")  
 
 set(DEPS src/dataPatternElement.cpp)
 add_boost_test(test/dataPatternElement_test.cpp "${DEPS}")  
 
-set(DEPS src/request.cpp)
+set(DEPS src/request.cpp src/data.cpp src/dataElement.cpp)
 add_boost_test(test/request_test.cpp "${DEPS}")  
 
-set(DEPS src/response.cpp)
+set(DEPS src/response.cpp src/data.cpp src/dataElement.cpp)
 add_boost_test(test/response_test.cpp "${DEPS}")  
 
 
