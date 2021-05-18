@@ -3,6 +3,7 @@
 #include<string>
 
 #include"../src/dataElement.hpp"
+#include"../src/dataPatternElement.hpp"
 
 using namespace boost::unit_test;
 
@@ -20,4 +21,52 @@ BOOST_AUTO_TEST_CASE(getter_test) {
     
     std::string value = std::get<std::string>(string_element.get_value());
     BOOST_CHECK_EQUAL(value, string_test);
+}
+
+BOOST_AUTO_TEST_CASE(compare_equal_test) {
+    DataElement data_element(5);
+    DataPatternElement data_pattern_element(Condition::Equal, 5);
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_equal_false_test) {
+    DataElement data_element(5);
+    DataPatternElement data_pattern_element(Condition::Equal, 6);
+    BOOST_ASSERT(!data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_less_test) {
+    DataElement data_element(5);
+    DataPatternElement data_pattern_element(Condition::Less, 6);
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_less_false_test) {
+    DataElement data_element(7);
+    DataPatternElement data_pattern_element(Condition::Less, 6);
+    BOOST_ASSERT(!data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_greater_test) {
+    DataElement data_element(7);
+    DataPatternElement data_pattern_element(Condition::Greater, 6);
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_greater_false_test) {
+    DataElement data_element(5);
+    DataPatternElement data_pattern_element(Condition::Greater, 6);
+    BOOST_ASSERT(!data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_equal_string_test) {
+    DataElement data_element("aaa");
+    DataPatternElement data_pattern_element(Condition::Equal, "aaa");
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_less_string_test) {
+    DataElement data_element("aaa");
+    DataPatternElement data_pattern_element(Condition::Equal, "aba");
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
 }

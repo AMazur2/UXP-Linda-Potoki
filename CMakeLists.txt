@@ -20,7 +20,7 @@ include(BoostTestHelpers.cmake)
 set(DEPS src/data.cpp src/dataElement.cpp)
 add_boost_test(test/data_test.cpp "${DEPS}")      
 
-set(DEPS src/dataElement.cpp)
+set(DEPS src/dataElement.cpp src/dataPatternElement.cpp)
 add_boost_test(test/dataElement_test.cpp "${DEPS}")  
 
 set(DEPS src/dataPattern.cpp src/dataPatternElement.cpp)

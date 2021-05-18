@@ -2,7 +2,7 @@
 
 #include<vector>
 
-#include"dataPatternElement.hpp"
+class DataPatternElement;
 
 class DataPattern {
     std::vector<DataPatternElement> values;
@@ -12,4 +12,6 @@ public:
     DataPattern(const char* fmt...);
 
     const DataPatternElement& operator[](std::size_t idx) const;
+
+    int size() const;
 };

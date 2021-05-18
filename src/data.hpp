@@ -2,7 +2,9 @@
 
 #include<vector>
 
-#include"dataElement.hpp"
+class DataElement;
+
+class DataPattern;
 
 class Data {
     std::vector<DataElement> values;
@@ -11,4 +13,6 @@ public:
     Data(const char* fmt...);
 
     const DataElement& operator[](std::size_t idx) const;
+
+    bool compare(DataPattern pattern) const;
 };

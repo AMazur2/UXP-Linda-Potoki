@@ -2,6 +2,7 @@
 #include<cstdarg>
 #include<string>
 #include"dataPattern.hpp"
+#include"dataPatternElement.hpp"
 
 DataPattern::DataPattern() {}
 
@@ -28,3 +29,5 @@ DataPattern::DataPattern(const char* fmt...) {
 }
 
 const DataPatternElement& DataPattern::operator[](std::size_t idx) const { return values[idx]; }
+
+int DataPattern::size() const {return values.size();}

@@ -1,6 +1,9 @@
 #include<iostream>
 #include<cstdarg>
 #include"data.hpp"
+#include"dataPattern.hpp"
+#include"dataElement.hpp"
+#include"dataPatternElement.hpp"
 
 Data::Data() {}
 
@@ -24,3 +27,14 @@ Data::Data(const char* fmt...) {
 }
 
 const DataElement& Data::operator[](std::size_t idx) const { return values[idx]; }
+
+bool Data::compare(DataPattern pattern) const {
+    if (values.size() != pattern.size()) return false;
+
+    for (int i = 0; i < values.size(); i++) {
+        if (!values[i].compare(pattern[i])) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -1,22 +1,25 @@
 #pragma once
 
 #include<variant>
+#include<ctime>
+#include<sys/types.h>
 
-#include"data.hpp"
-#include"dataPattern.hpp"
+class Data;
+class DataPattern;
 
 enum class RequestAction {Output, Input, Read};
 
 class Request {
-    std::variant<Data, DataPattern> data;
+    std::variant<std::monostate, Data, DataPattern> data;
     RequestAction action;
     pid_t pid;
     time_t timeout;
 
 public:
-    Request(std::variant<Data, DataPattern> data, RequestAction requestAction, pid_t process_id, time_t timeout);
+    Request(Data data, RequestAction requestAction, pid_t process_id, time_t time);
+    Request(DataPattern data_pattern, RequestAction requestAction, pid_t process_id, time_t time);
 
-    std::variant<Data, DataPattern> get_data();
+    std::variant<std::monostate, Data, DataPattern> get_data();
     RequestAction get_action();
     pid_t get_pid();
     time_t get_timeout();
