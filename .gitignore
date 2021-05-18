@@ -145,3 +145,6 @@ build/CMakeFiles/linda-potoki.dir/src/dataPattern.cpp.o
 build/CMakeFiles/linda-potoki.dir/src/dataPatternElement.cpp.o
 build/CMakeFiles/linda-potoki.dir/src/request.cpp.o
 build/CMakeFiles/linda-potoki.dir/src/response.cpp.o
+.vscode/settings.json
+build/.cmake/api/v1/reply/index-2021-05-18T12-54-12-0967.json
+build/Testing/Temporary/LastTestsFailed_20210518-0916.log
