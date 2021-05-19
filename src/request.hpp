@@ -4,8 +4,8 @@
 #include<ctime>
 #include<sys/types.h>
 
-class Data;
-class DataPattern;
+#include"data.hpp"
+#include"dataPattern.hpp"
 
 enum class RequestAction {Output, Input, Read};
 

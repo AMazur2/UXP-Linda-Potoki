@@ -67,6 +67,24 @@ BOOST_AUTO_TEST_CASE(compare_equal_string_test) {
 
 BOOST_AUTO_TEST_CASE(compare_less_string_test) {
     DataElement data_element("aaa");
-    DataPatternElement data_pattern_element(Condition::Equal, "aba");
+    DataPatternElement data_pattern_element(Condition::Less, "aba");
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_less_string_false_test) {
+    DataElement data_element("aca");
+    DataPatternElement data_pattern_element(Condition::Less, "aba");
+    BOOST_ASSERT(!data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_less_equal_string_test) {
+    DataElement data_element("aca");
+    DataPatternElement data_pattern_element(Condition::LessEqual, "aca");
+    BOOST_ASSERT(data_element.compare(data_pattern_element));
+}
+
+BOOST_AUTO_TEST_CASE(compare_less_equal_float_test) {
+    DataElement data_element(1.0);
+    DataPatternElement data_pattern_element(Condition::LessEqual, 1.5);
     BOOST_ASSERT(data_element.compare(data_pattern_element));
 }

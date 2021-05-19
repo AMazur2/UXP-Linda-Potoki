@@ -28,6 +28,6 @@ DataPattern::DataPattern(const char* fmt...) {
     va_end(args);
 }
 
-const DataPatternElement& DataPattern::operator[](std::size_t idx) const { return values[idx]; }
+// const DataPatternElement& DataPattern::operator[](std::size_t idx) const { return values[idx]; }
 
-int DataPattern::size() const {return values.size();}
+// int DataPattern::size() const {return values.size();}

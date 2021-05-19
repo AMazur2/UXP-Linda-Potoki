@@ -10,8 +10,8 @@ class DataPatternElement {
     Condition condition;
 
 public:
-    DataPatternElement(Condition c, std::variant<std::string, int, double> v);
+    DataPatternElement(Condition c, std::variant<std::string, int, double> v) : condition{c}, value{v} {}
 
-    std::variant<std::string, int, double> get_value();
-    Condition get_condition();
+    std::variant<std::string, int, double> get_value() {return value;}
+    Condition get_condition()  {return condition;}
 };

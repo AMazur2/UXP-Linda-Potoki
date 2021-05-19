@@ -1,9 +1,6 @@
 #include<iostream>
 #include<cstdarg>
 #include"data.hpp"
-#include"dataPattern.hpp"
-#include"dataElement.hpp"
-#include"dataPatternElement.hpp"
 
 Data::Data() {}
 

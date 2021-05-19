@@ -2,9 +2,10 @@
 
 #include<vector>
 
-class DataElement;
+#include"dataElement.hpp"
 
-class DataPattern;
+#include"dataPatternElement.hpp"
+#include"dataPattern.hpp"
 
 class Data {
     std::vector<DataElement> values;

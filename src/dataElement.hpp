@@ -3,7 +3,7 @@
 #include<variant>
 #include<string>
 
-class DataPatternElement;
+#include"dataPatternElement.hpp"
 
 class DataElement {
     std::variant<std::string, int, double> value;
