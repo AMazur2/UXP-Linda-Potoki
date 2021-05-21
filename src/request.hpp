@@ -16,11 +16,11 @@ class Request {
     time_t timeout;
 
 public:
-    Request(Data data, RequestAction requestAction, pid_t process_id, time_t time);
-    Request(DataPattern data_pattern, RequestAction requestAction, pid_t process_id, time_t time);
+    Request(const Data& data, RequestAction requestAction, pid_t process_id, time_t time);
+    Request(const DataPattern& data_pattern, RequestAction requestAction, pid_t process_id, time_t time);
 
     std::variant<std::monostate, Data, DataPattern> get_data();
     RequestAction get_action();
-    pid_t get_pid();
-    time_t get_timeout();
+    [[nodiscard]] pid_t get_pid() const;
+    [[nodiscard]] time_t get_timeout() const;
 };

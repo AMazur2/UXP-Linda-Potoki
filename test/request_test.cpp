@@ -3,9 +3,6 @@
 #include <variant>
 
 #include"../src/request.hpp"
-#include"../src/data.hpp"
-#include"../src/dataElement.hpp"
-#include"../src/dataPattern.hpp"
 
 using namespace boost::unit_test;
 

@@ -2,8 +2,6 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include"../src/response.hpp"
-#include"../src/data.hpp"
-#include"../src/dataElement.hpp"
 
 using namespace boost::unit_test;
 

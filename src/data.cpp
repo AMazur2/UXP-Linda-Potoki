@@ -2,7 +2,7 @@
 #include<cstdarg>
 #include"data.hpp"
 
-Data::Data() {}
+Data::Data() = default;
 
 Data::Data(const char* fmt...) {
     va_list args;
@@ -12,11 +12,11 @@ Data::Data(const char* fmt...) {
 
     for (int i = 0; i < 100 && i < format.size() && *fmt != '\0'; ++i, ++fmt) {
         if (*fmt == 's') {
-            values.push_back(DataElement(std::string(va_arg(args, char*))));
+            values.emplace_back(std::string(va_arg(args, char*)));
         } else if (*fmt == 'i') {
-            values.push_back(DataElement(va_arg(args, int)));
+            values.emplace_back(va_arg(args, int));
         } else if (*fmt == 'f') {
-            values.push_back(DataElement(va_arg(args, double)));
+            values.emplace_back(va_arg(args, double));
         }      
     }
     
@@ -25,7 +25,13 @@ Data::Data(const char* fmt...) {
 
 const DataElement& Data::operator[](std::size_t idx) const { return values[idx]; }
 
-bool Data::compare(DataPattern pattern) const {
+Data::Data(const std::vector<DataElement>& elements) {
+    for (auto & element : elements) {
+        values.push_back(element);
+    }
+}
+
+bool Data::compare(const DataPattern& pattern) const {
     if (values.size() != pattern.size()) return false;
 
     for (int i = 0; i < values.size(); i++) {
@@ -35,3 +41,14 @@ bool Data::compare(DataPattern pattern) const {
     }
     return true;
 }
+
+std::ostream &operator<< (std::ostream &os, const Data& data) {
+    os << "(";
+    for (const auto & value : data.values) {
+        os << value << ", ";
+    }
+    os << ")";
+    return os;
+}
+
+size_t Data::size() const { return values.size();}

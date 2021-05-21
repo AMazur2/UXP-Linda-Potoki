@@ -3,7 +3,6 @@
 #include<string>
 
 #include"../src/dataElement.hpp"
-#include"../src/dataPatternElement.hpp"
 
 using namespace boost::unit_test;
 

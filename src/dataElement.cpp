@@ -1,8 +1,11 @@
 #include"dataElement.hpp"
+
+#include <iostream>
+#include <utility>
 #include"dataPatternElement.hpp"
 
-DataElement::DataElement(std::variant<std::string, int, double> s) : value{s} {}
-std::variant<std::string, int, double> DataElement::get_value() {return value;}
+DataElement::DataElement(std::variant<std::monostate, std::string, int, double> s) : value{std::move(s)} {}
+std::variant<std::monostate, std::string, int, double> DataElement::get_value() {return value;}
 
 bool DataElement::compare(DataPatternElement pattern_element) const {
     if (std::holds_alternative<int>(value) && std::holds_alternative<int>(pattern_element.get_value()) 
@@ -32,7 +35,7 @@ bool DataElement::compare(DataPatternElement pattern_element) const {
             case Condition::All:
                 return true;
             case Condition::Equal:
-                return element_string_value.compare(pattern_string_value) == 0;
+                return element_string_value == pattern_string_value;
             case Condition::Greater:
                 return element_string_value.compare(pattern_string_value) > 0;
             case Condition::GreaterEqual:
@@ -46,4 +49,17 @@ bool DataElement::compare(DataPatternElement pattern_element) const {
         }
     }
     return false;
+}
+
+DataElement::DataElement() = default;
+
+std::ostream &operator<< (std::ostream &os, const DataElement& element) {
+    if (std::holds_alternative<std::string>(element.value)) {
+        os << std::get<std::string>(element.value);
+    } else if (std::holds_alternative<int>(element.value)) {
+        os << std::get<int>(element.value);
+    } else if (std::holds_alternative<double>(element.value)) {
+        os << std::get<double>(element.value);
+    }
+    return os;
 }

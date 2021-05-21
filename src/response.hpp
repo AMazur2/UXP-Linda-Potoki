@@ -6,7 +6,7 @@ class Response {
     Data data;
 
 public:
-    Response(Data data);
+    explicit Response(Data data);
 
     Data get_data();
 };
