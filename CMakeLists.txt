@@ -12,8 +12,8 @@ add_executable(linda-potoki
     src/dataPatternElement.hpp src/dataPatternElement.cpp
     src/dataPattern.hpp src/dataPattern.cpp 
     src/response.hpp src/response.cpp 
-    src/request.hpp src/request.cpp 
-    )
+    src/request.hpp src/request.cpp
+        src/LindaCommunication.cpp src/LindaCommunication.h)
 
 include(BoostTestHelpers.cmake)
 
