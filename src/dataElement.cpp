@@ -1,6 +1,9 @@
 #include"dataElement.hpp"
 #include"dataPatternElement.hpp"
 
+DataElement::DataElement()
+{}
+
 DataElement::DataElement(boost::variant<std::string, int, double> s) : value{s} {}
 boost::variant<std::string, int, double> DataElement::get_value() {return value;}
 

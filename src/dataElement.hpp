@@ -16,6 +16,7 @@ class DataElement {
         ar & value;
     }
 public:
+    DataElement();
     DataElement(boost::variant<std::string, int, double> s);
     boost::variant<std::string, int, double> get_value();
 

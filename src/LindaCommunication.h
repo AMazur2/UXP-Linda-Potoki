@@ -5,16 +5,19 @@
 
 #include "Pipe.h"
 #include "request.hpp"
+#include "response.hpp"
 
 class LindaCommunication {
 private:
     Pipe inputPipe;
     Pipe outputPipe;
+    int send(Request request);
+    int receive(Response &response);
 public:
-    LindaCommunication(Pipe inputPipe, Pipe outputPipe);
+    LindaCommunication(Pipe &inputPipe, Pipe &outputPipe);
     int input(Request request);
-    int read(Request request);
-    int output(Request request);
+    int read(Request request, Response &response);
+    int output(Request request, Response &response);
 };
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include<vector>
+#include<boost/serialization/vector.hpp>
 #include <boost/serialization/access.hpp>
 
 #include"dataPatternElement.hpp"
