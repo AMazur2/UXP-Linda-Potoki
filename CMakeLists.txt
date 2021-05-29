@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(linda-potoki
-    src/main.cpp 
+    src/main.cpp
+    src/Pipe.h src/Pipe.cpp
     src/dataElement.hpp src/dataElement.cpp 
     src/data.hpp src/data.cpp
     src/dataPatternElement.hpp src/dataPatternElement.cpp
@@ -16,7 +17,7 @@ add_executable(linda-potoki
         src/LindaCommunication.cpp src/LindaCommunication.h)
 
 include(BoostTestHelpers.cmake)
-
+target_link_libraries( linda-potoki -lboost_serialization )
 set(DEPS src/data.cpp src/dataElement.cpp src/dataPattern.cpp)
 add_boost_test(test/data_test.cpp "${DEPS}")      
 

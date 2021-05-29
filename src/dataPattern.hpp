@@ -1,12 +1,18 @@
 #pragma once
 
 #include<vector>
+#include <boost/serialization/access.hpp>
 
 #include"dataPatternElement.hpp"
 
 class DataPattern {
     std::vector<DataPatternElement> values;
 
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive & ar, const unsigned int version) {
+        ar & values;
+    }
 public:
     DataPattern();
     DataPattern(const char* fmt...);

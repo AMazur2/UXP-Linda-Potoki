@@ -3,11 +3,11 @@
 Request::Request(Data data, RequestAction requestAction, pid_t process_id, time_t time)
     : action{requestAction}, pid{process_id}, timeout{time} {
 
-    this->data = std::variant<std::monostate, Data, DataPattern>( data);
+    this->data = boost::variant<int, Data, DataPattern>( data);
     // this->data = data;
 }
 
-std::variant<std::monostate, Data, DataPattern> Request::get_data() {return data;}
+boost::variant<int, Data, DataPattern> Request::get_data() {return data;}
 
 RequestAction Request::get_action() {return action;}
 
