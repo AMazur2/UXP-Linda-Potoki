@@ -6,11 +6,14 @@
 #include"dataPatternElement.hpp"
 
 class DataElement {
-    std::variant<std::string, int, double> value;
+    std::variant<std::monostate, std::string, int, double> value;
 
 public:
-    DataElement(std::variant<std::string, int, double> s);
-    std::variant<std::string, int, double> get_value();
+    DataElement();
+    explicit DataElement(std::variant<std::monostate, std::string, int, double> s);
+    std::variant<std::monostate, std::string, int, double> get_value();
 
-    bool compare(DataPatternElement pattern_element) const;
+    [[nodiscard]] bool compare(DataPatternElement pattern_element) const;
+
+    friend std::ostream &operator<< (std::ostream &os, const DataElement& element);
 };

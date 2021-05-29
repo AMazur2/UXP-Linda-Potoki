@@ -2,7 +2,6 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include"../src/dataPattern.hpp"
-#include"../src/dataPatternElement.hpp"
 
 using namespace boost::unit_test;
 
