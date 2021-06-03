@@ -57,12 +57,13 @@ void Server::processInput(Request irequest)
     int i = 0;
     while(i < this->tuples.size())
     {
- /*       if(compare(ireques, this->tuples[i])
+    /*  if(compare(irequest, this->tuples[i])
         {
             Response *r = new Response(this->tuples[i]);
             this->tuples.erase(this->tuples.begin()+i);
-            sendResponse(r, ireques->get_pid());
-            delete(ireques);
+            Pipe p = select(irequest->get_pid());
+            sendResponse(r, p);
+            delete(irequest);
             return;
         }                                                   */
         i++;
@@ -81,10 +82,11 @@ void Server::processRead(Request rrequest)
     int i = 0;
     while(i < this->tuples.size())
     {
- /*       if(compare(ireques, this->tuples[i])
+    /*  if(compare(rrequest, this->tuples[i])
         {
             Response *r = new Response(this->tuples[i]);
-            sendResponse(r, rreques->get_pid());
+            Pipe p = select(rrequest->get_pid());
+            sendResponse(r, p);
             delete(rrequest)
             return;
         }                                                   */
@@ -105,19 +107,21 @@ void Server::processOutput(Request orequest)
     bool send = false;
     while(current != null)
     {
-/*        if(compare(current->r, orequest.get_data()))
+    /*  if(compare(current->r, orequest.get_data()))
         {
             if(current->priority == RequestAction::Read)
             {
                 Response *r = new Response(orequest.get_data());
-                sendResponse(r, current->r.get_pid());
+                Pipe p = select(current->r.get_pid());
+                sendResponse(r, p);
                 this->list.deleteQuery(current);
                 send = true;
             }
             else
             {
                 Response *r = new Response(orequest.get_data());
-                sendResponse(r, current->r.get_pid());
+                Pipe p = select(current->r.get_pid());
+                sendResponse(r, p);
                 this->list.deleteQuery(current);
                 delete(orequesr);
                 return;
@@ -133,4 +137,10 @@ void Server::processOutput(Request orequest)
     }   
 
     this->tuples.push_back(orequest.get_data());
+}
+
+Pipe Server::select(pid_t reciever)
+{
+    auto search = this->outPipes.find(reciever);
+    return search->second;
 }
