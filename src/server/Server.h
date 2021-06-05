@@ -46,14 +46,17 @@ class Server
 
         void setPipes(std::map<pid_t, Pipe> in, std::map<pid_t, Pipe> out);
 
-        void processInput(Request irequest);
+        std::map<pid_t, Pipe> getInPipes() { return inPipes; };
 
-        void processRead(Request rrequest);
+        void processInput(Request &irequest);
 
-        void processOutput(Request orequest);
+        void processRead(Request &rrequest);
 
-        Pipe select(pid_t receiver);
+        void processOutput(Request &orequest);
 
+        Pipe selectPipe(pid_t receiver);
+
+        void run();
 };
 
 

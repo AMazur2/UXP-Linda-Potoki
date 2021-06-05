@@ -40,6 +40,7 @@ void Pipe::closeEnd(PipeEnd pe)
 
 void Pipe::write_to(const void* buffer, unsigned long length)
 {
+    logger.write("Trying to write to pipe");
     if(pipeDescriptors[PipeEnd::Write] != CLOSED)
     {
         if(length > PIPE_BUF)
@@ -87,3 +88,5 @@ bool Pipe::readWithTimeout(void* buffer, unsigned long length, unsigned timeout)
     read_from(buffer, length);
     return true;
 }
+
+int Pipe::returnDescriptor(int i){ return pipeDescriptors[i]; }

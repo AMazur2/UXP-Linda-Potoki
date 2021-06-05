@@ -76,7 +76,7 @@ void QueryList::deleteQuery(Query* q)
 
         if(head == q)
         {
-            if(q->priotiry == RequestAction::Read)
+            if(q->priority == RequestAction::Read)
             {
                 if(q == lastRead)
                 {
@@ -112,7 +112,7 @@ void QueryList::deleteQuery(Query* q)
                 lastRead = current;
             else if( q == lastInput )
             {
-                if(current->priotiry == RequestAction::Input)
+                if(current->priority == RequestAction::Input)
                     lastInput = current;
                 else
                     lastInput = nullptr;
