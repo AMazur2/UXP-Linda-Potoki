@@ -23,9 +23,9 @@ private:
 public:
     Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout);
     Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout, unsigned int seed);
-    void start();
-    void start(int generatorSizeLimits[4]);
-    void start(const std::string instructionsFileName);
+    void run();
+    void run(int generatorSizeLimits[4]);
+    void run(const std::string instructionsFileName);
 };
 
 #endif
