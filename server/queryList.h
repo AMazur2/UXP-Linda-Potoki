@@ -6,12 +6,12 @@
 #define QUERY_H
 
 #include <iostream>
+#include "request.hpp"
 
 struct Query                            //do zmiany jak przyjdzie zapytanie
 {
-    int priotiry;
-    // zapytanie
-    char c;
+    Request r;
+    RequestAction priority;
     Query* nextQuery;
 };
 

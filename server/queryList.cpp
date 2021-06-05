@@ -4,9 +4,6 @@
 
 #include "queryList.h"
 
-#define READ 0      //do zmiany jak przyjdą struktury
-#define INPUT 1
-
 QueryList::QueryList()
 {
     this->head = nullptr;
@@ -38,12 +35,12 @@ void QueryList::saveQuery(Query* q)
     if(head == nullptr)
     {
         head = q;
-        if(q->priotiry == READ)
+        if(q->priotiry == RequestAction::Read)
             lastRead = q;
         else
             lastInput = q;
     }
-    else if(q->priotiry == READ)
+    else if(q->priotiry == RequestAction::Read)
     {
         if(lastRead == nullptr)
         {
@@ -79,7 +76,7 @@ void QueryList::deleteQuery(Query* q)
 
         if(head == q)
         {
-            if(q->priotiry == READ)
+            if(q->priotiry == RequestAction::Read)
             {
                 if(q == lastRead)
                 {
@@ -115,7 +112,7 @@ void QueryList::deleteQuery(Query* q)
                 lastRead = current;
             else if( q == lastInput )
             {
-                if(current->priotiry == INPUT)
+                if(current->priotiry == RequestAction::Input)
                     lastInput = current;
                 else
                     lastInput = nullptr;
@@ -130,7 +127,7 @@ void QueryList::deleteQuery(Query* q)
         delete q;
     }
 }
-
+/*
 void QueryList::showQuery()
 {
     if(head != nullptr)
@@ -145,3 +142,4 @@ void QueryList::showQuery()
     else
         std::cout << "List is empty!" << std::endl;
 }
+*/
