@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(linda-potoki
     src/main.cpp
+        src/server/queryList.h src/server/queryList.cpp
+        src/server/Server.cpp src/server/Server.h
     src/Pipe.h src/Pipe.cpp
     src/dataElement.hpp src/dataElement.cpp 
     src/data.hpp src/data.cpp

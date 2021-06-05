@@ -17,8 +17,11 @@ class DataPatternElement {
         ar & value;
     }
 public:
-    DataPatternElement(Condition c, boost::variant<std::string, int, double> v) : condition{c}, value{v} {}
+    DataPatternElement() = default;
+    DataPatternElement(Condition c, std::variant<std::monostate, std::string, int, double> v);
 
-    boost::variant<std::string, int, double> get_value() {return value;}
-    Condition get_condition()  {return condition;}
+    std::variant<std::monostate, std::string, int, double> get_value();
+    Condition get_condition();
+
+    friend std::ostream &operator<< (std::ostream &os, const DataPatternElement& element);
 };

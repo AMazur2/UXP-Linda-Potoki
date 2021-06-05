@@ -13,11 +13,12 @@
 #include <iostream>
 #include <vector>
 #include <map>
-
+#include <stdio.h>
 
 class Server
 {
     private:
+        const std::string fileName = "server" + std::to_string(getpid()) + ".log";
         Logger logger;
         QueryList list;                     // lista zapytań
         std::vector<Data> tuples;            // vector krotek             

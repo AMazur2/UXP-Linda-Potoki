@@ -8,8 +8,10 @@
 #include <iostream>
 #include "request.hpp"
 
-struct Query                            //do zmiany jak przyjdzie zapytanie
+class Query
 {
+public:
+    Query(Request re, RequestAction ra) : r(re), priority(ra), nextQuery(nullptr){}
     Request r;
     RequestAction priority;
     Query* nextQuery;

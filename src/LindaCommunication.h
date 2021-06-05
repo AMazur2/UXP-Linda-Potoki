@@ -18,6 +18,7 @@ public:
     int output(Request request);
     int read(Request request, Response &response);
     int input(Request request, Response &response);
+
 };
 
 

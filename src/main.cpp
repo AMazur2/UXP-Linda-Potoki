@@ -7,5 +7,9 @@
 using namespace std;
 
 int main() {
-    cout << "hello" << endl;
+    //utworzenie klientow
+    //utworzenie serwera
+    //oczekiwanie w petli na znak wyjsci
+    //Kill them All!
+    return 0;
 }
