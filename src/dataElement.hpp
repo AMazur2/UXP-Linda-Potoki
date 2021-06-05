@@ -21,4 +21,5 @@ public:
     boost::variant<std::string, int, double> get_value();
 
     bool compare(DataPatternElement pattern_element) const;
+    friend std::ostream &operator<< (std::ostream &os, const DataElement& element);
 };

@@ -22,7 +22,7 @@ class QueryList
     public:
         unsigned int queryListSize;         //obecny stan bufora
         Query* head;                        //wskaznik na poczatek kolejki
-        Query* lastRead;                    //wskaznik na ostatnie pytanie typu read
+        Query* lastRead;                    //wskaznik na ostatnie pytanie typu read_from
         Query* lastInput;                   //wskaznik na ostatnie pytanie typu input
 
         QueryList();

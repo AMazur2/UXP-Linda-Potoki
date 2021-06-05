@@ -18,8 +18,13 @@ class Data {
 public:
     Data();
     Data(const char* fmt...);
+    explicit Data(const std::vector<DataElement>& elements);
 
     const DataElement& operator[](std::size_t idx) const;
 
     bool compare(DataPattern pattern) const;
+
+    std::string to_string();
+
+    friend std::ostream &operator<< (std::ostream &os, const Data& data);
 };

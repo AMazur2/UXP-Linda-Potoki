@@ -12,7 +12,7 @@ Pipe::Pipe(int key) : logger(fileName)
 {
     number = key;
     if(pipe(pipeDescriptors) == -1)
-        throw "Cannot open pipe";
+        throw std::runtime_error("Failed to open pipe");
 }
 
 Pipe::Pipe(int rd, int wd): logger(fileName)
@@ -25,11 +25,11 @@ Pipe::~Pipe() {}
 
 void Pipe::closeDescriptors()
 {
-    closePipeEnd(PipeEnd::Read);
-    closePipeEnd(PipeEnd::Write);
+    closeEnd(PipeEnd::Read);
+    closeEnd(PipeEnd::Write);
 }
 
-void Pipe::closePipeEnd(PipeEnd pe)
+void Pipe::closeEnd(PipeEnd pe)
 {
     if(pipeDescriptors[pe] != CLOSED)
     {
@@ -38,7 +38,7 @@ void Pipe::closePipeEnd(PipeEnd pe)
     }
 }
 
-void Pipe::writePipe(const void* buffer, unsigned long length)
+void Pipe::write_to(const void* buffer, unsigned long length)
 {
     if(pipeDescriptors[PipeEnd::Write] != CLOSED)
     {
@@ -49,10 +49,11 @@ void Pipe::writePipe(const void* buffer, unsigned long length)
             throw std::runtime_error(std::strerror(errno));
     }
     else
-        throw std::runtime_error("Cannot write to closed write end");
+        throw std::runtime_error("Cannot write to closed write_to end");
+    logger.write("Written to pipe");
 }
 
-bool Pipe::readPipe(void* buffer, unsigned long length)
+bool Pipe::read_from(void* buffer, unsigned long length)
 {
     if(pipeDescriptors[PipeEnd::Read] != CLOSED)
     {
@@ -62,10 +63,10 @@ bool Pipe::readPipe(void* buffer, unsigned long length)
         return true;
     }
     else 
-        throw std::runtime_error("Cannot read from closed read end");
+        throw std::runtime_error("Cannot read from closed read_from end");
 }
 
-bool Pipe::checkPipe(unsigned timeout)
+bool Pipe::readWithTimeout(void* buffer, unsigned long length, unsigned timeout)
 {
     struct timeval tv;
     tv.tv_sec = timeout;

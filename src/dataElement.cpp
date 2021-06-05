@@ -49,3 +49,14 @@ bool DataElement::compare(DataPatternElement pattern_element) const {
     }
     return false;
 }
+
+std::ostream &operator<< (std::ostream &os, const DataElement& element) {
+    if (element.value.type() == typeid(std::string)) {
+        os << boost::get<std::string>(element.value);
+    } else if (element.value.type() == typeid(int)) {
+        os << boost::get<int>(element.value);
+    } else if (element.value.type() == typeid(double)) {
+        os << boost::get<double>(element.value);
+    }
+    return os;
+}

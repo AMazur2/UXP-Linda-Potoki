@@ -1,4 +1,5 @@
 #include<iostream>
+#include<sstream>
 #include<cstdarg>
 #include<string>
 #include"dataPattern.hpp"
@@ -27,6 +28,28 @@ DataPattern::DataPattern(const char* fmt...) {
     
     va_end(args);
 }
+
+DataPattern::DataPattern(const std::vector<DataPatternElement>& elements) {
+    for (const auto & element : elements) {
+        values.push_back(element);
+    }
+}
+
+std::string DataPattern::to_string() {
+    std::stringstream ss;
+    ss << *this;
+    return ss.str();
+}
+
+std::ostream &operator<< (std::ostream &os, const DataPattern& data) {
+    os << "(";
+    for (const auto & value : data.values) {
+        os << value << ", ";
+    }
+    os << ")";
+    return os;
+}
+
 
 // const DataPatternElement& DataPattern::operator[](std::size_t idx) const { return values[idx]; }
 

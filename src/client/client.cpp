@@ -38,9 +38,9 @@ void Client::start(int generatorSizeLimits[4]) {
                 Data dataResp;
                 Response response(dataResp);
 
-                this->logger.write("Try to read data with dataPattern: " + dataReq);
+                this->logger.write("Try to read data with dataPattern: " + dataReq.to_string());
                 if (this->lindaCommunication.read(request, response) != -1) {
-                    this->logger.write("Successfully read data: " + response.get_data());
+                    this->logger.write("Successfully read data: " + response.get_data().to_string());
                 } else {
                     this->logger.write("Failed to read data");
                 }

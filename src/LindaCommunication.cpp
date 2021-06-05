@@ -34,7 +34,17 @@ int LindaCommunication::receive(Response& r, unsigned timeout)
 
     try
     {
-        inputPipe.readPipe(buff, PIPE_BUF);
+        if (inputPipe.readWithTimeout(buff, PIPE_BUF, timeout))
+        {
+            std::stringstream inputStream;
+            inputStream << buff;
+
+            boost::archive::text_iarchive ia(inputStream);
+
+            ia >> r;
+
+            return 0;
+        }
     }
     catch(std::runtime_error& ex)
     {
@@ -51,7 +61,7 @@ int LindaCommunication::send(Request request)
 
     t_oa << request;
     try {
-        outputPipe.writePipe(stream.str().c_str(), stream.str().size());
+        outputPipe.write_to(stream.str().c_str(), stream.str().size());
     }
     catch (std::exception &e) {
         return -1;

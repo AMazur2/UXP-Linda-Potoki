@@ -136,7 +136,8 @@ void Server::sendResponse(Pipe p, Response r)
 
     t_oa << r;
     try {
-        p.writePipe(stream.str().c_str(), stream.str().size());
+        p.write_to(stream.str().c_str(), stream.str().size());
+        this->logger.write("Successfully send : " + r.get_data().to_string());
     }
     catch (std::exception &e) {
         throw std::runtime_error(e.what());

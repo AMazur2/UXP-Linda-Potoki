@@ -1,4 +1,9 @@
 #include<iostream>
+#include<map>
+
+#include"Pipe.h"
+#include"client/client.h"
+#include"server/Server.h"
 #include"data.hpp"
 #include"dataElement.hpp"
 #include"dataPattern.hpp"
