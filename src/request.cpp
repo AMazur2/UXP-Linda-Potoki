@@ -7,6 +7,8 @@ Request::Request(Data data, RequestAction requestAction, pid_t process_id, time_
     // this->data = data;
 }
 
+Request::Request() : action{RequestAction::Input}, pid{0}, timeout{0}, data{0} {}
+
 boost::variant<int, Data, DataPattern> Request::get_data() {return data;}
 
 RequestAction Request::get_action() {return action;}

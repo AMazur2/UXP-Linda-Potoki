@@ -27,6 +27,7 @@ class Request {
     }
 
 public:
+    Request();
     Request(Data data, RequestAction requestAction, pid_t process_id, time_t time);
     Request(DataPattern data_pattern, RequestAction requestAction, pid_t process_id, time_t time);
 
