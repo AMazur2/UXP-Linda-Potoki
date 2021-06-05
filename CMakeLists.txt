@@ -16,7 +16,7 @@ add_executable(linda-potoki
     src/dataPattern.hpp src/dataPattern.cpp 
     src/response.hpp src/response.cpp 
     src/request.hpp src/request.cpp
-        src/LindaCommunication.cpp src/LindaCommunication.h)
+        src/LindaCommunication.cpp src/LindaCommunication.h src/client/client.cpp src/client/client.h src/dataGenerator.cpp src/dataGenerator.h)
 
 include(BoostTestHelpers.cmake)
 target_link_libraries( linda-potoki -lboost_serialization )
