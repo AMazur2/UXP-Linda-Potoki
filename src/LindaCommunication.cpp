@@ -8,12 +8,12 @@ LindaCommunication::LindaCommunication(Pipe &inputPipe, Pipe &outputPipe)
     this->outputPipe = outputPipe;
 }
 
-int LindaCommunication::input(Request request)
+int LindaCommunication::output(Request request)
 {
     return send(request);
 }
 
-int LindaCommunication::output(Request request, Response &response)
+int LindaCommunication::input(Request request, Response &response)
 {
     if(send(request) == 0)
         return receive(response);

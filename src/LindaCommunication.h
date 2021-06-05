@@ -15,9 +15,9 @@ private:
     int receive(Response &response);
 public:
     LindaCommunication(Pipe &inputPipe, Pipe &outputPipe);
-    int input(Request request);
+    int output(Request request);
     int read(Request request, Response &response);
-    int output(Request request, Response &response);
+    int input(Request request, Response &response);
 };
 
 
