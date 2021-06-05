@@ -1,5 +1,7 @@
 #include<iostream>
 #include<map>
+#include <csignal>
+#include <sys/wait.h>
 
 #include"Pipe.h"
 #include"client/client.h"

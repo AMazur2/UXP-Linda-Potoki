@@ -17,7 +17,7 @@ Server::Server(std::map<pid_t, Pipe> in, std::map<pid_t, Pipe> out) : logger(fil
 
 Server::~Server()
 {
-    logger.close();
+    logger.write("Server terminated");
 }
 
 void Server::setInputPipes(std::map<pid_t, Pipe> p)
@@ -158,7 +158,7 @@ void Server::run()
 
     std::map<pid_t, Pipe> in = getInPipes();
 
-    while(true)
+    while(serverRun)
     {
         signal(SIGINT, handleSignal);
         signal(SIGTERM, handleSignal);

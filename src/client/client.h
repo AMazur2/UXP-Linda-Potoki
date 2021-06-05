@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <csignal>
 
 #include "../LindaCommunication.h"
 #include "../Pipe.h"
@@ -22,6 +23,8 @@ private:
     LindaCommunication lindaCommunication;
     Logger logger;
     time_t timeout;
+
+    static void handleSignal(int sigNum);
 public:
     Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout);
     Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout, unsigned int seed);

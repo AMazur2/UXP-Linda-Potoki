@@ -5,8 +5,23 @@ Client::Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout) : Client(pip
     shouldRun = true;
 }
 
-Client::Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout, unsigned int seed) : lindaCommunication(pipeResponse, pipeRequest), logger("Client" + std::to_string(getpid()) + ".log"), timeout(timeout) {
-    srand(seed);
+Client::Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout, unsigned int seed) :
+lindaCommunication(pipeResponse, pipeRequest),
+logger("Client" + std::to_string(getpid()) + ".log"),
+timeout(timeout)
+{
+    srand(seed) ;
+    shouldRun = true;
+}
+
+
+
+void Client::handleSignal(int sigNum) {
+    if (sigNum == SIGINT) {
+        //
+    } else if(sigNum == SIGTERM) {
+        shouldRun = false;
+    }
 }
 
 void Client::run() {
@@ -23,7 +38,11 @@ void Client::run(int generatorSizeLimits[4]) {
     int max_real = generatorSizeLimits[2];
     int max_string_size = generatorSizeLimits[3];
     DataGenerator dataGenerator = DataGenerator(max_tuple_size, max_int, max_real, max_string_size);
-    while (true) {
+
+    signal(SIGINT, handleSignal);
+    signal(SIGTERM, handleSignal);
+
+    while (shouldRun) {
         if (rand() % 2) {
             Data dataReq = dataGenerator.next_data();
             Request request(dataReq, RequestAction::Output, getpid(), this->timeout);
