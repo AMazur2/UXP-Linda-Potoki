@@ -160,6 +160,9 @@ void Server::run()
 
     while(true)
     {
+        signal(SIGINT, handleSignal);
+        signal(SIGTERM, handleSignal);
+
         fd_set fds;
         int maxfd = 0;
 
@@ -214,5 +217,13 @@ void Server::run()
                 }
             }
         }
+    }
+}
+
+void Server::handleSignal(int sigNum) {
+    if (sigNum == SIGINT) {
+        //
+    } else if(sigNum == SIGTERM) {
+        serverRun = false;
     }
 }

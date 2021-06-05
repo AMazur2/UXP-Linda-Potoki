@@ -10,7 +10,8 @@
 #include"dataPatternElement.hpp"
 
 using namespace std;
-
+#include <sys/types.h>
+#include <sys/wait.h>
 int main() {
     //utworzenie klientow
     map<pid_t, Pipe> inPipes;
@@ -29,6 +30,7 @@ int main() {
            outPipe.closeEnd(PipeEnd::Write);
            Client client(outPipe, inPipe, 2);
            client.run();
+           return 0;
         }
         else
         {
@@ -39,16 +41,31 @@ int main() {
         }
     }
 
-    Server serv(inPipes, outPipes);
 
-    serv.run();
+    int server_pid = fork();
+    if(server_pid == 0) {
+        Server serv(inPipes, outPipes);
+        serv.run();
+        return 0;
+    }
     //utworzenie serwera
     //oczekiwanie w petli na znak wyjsci
     int c;
-    while((c = getchar()) != 'q')
-    {
+    while(getchar() != 'q');
 
+    for(auto &pid_descriptor : inPipes)
+    {
+        kill(pid_descriptor.first, SIGTERM);
+        int status;
+        waitpid(pid_descriptor.first, &status, 0);
     }
-    //Kill them All!
+
+    if(server_pid) {
+        kill(server_pid, SIGTERM);
+        int status;
+        waitpid(server_pid, &status, 0);
+    }
+
+
     return 0;
 }

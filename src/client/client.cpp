@@ -1,6 +1,9 @@
 #include "client.h"
 
-Client::Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout) : Client(pipeResponse, pipeRequest, timeout, time(NULL)) {}
+Client::Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout) : Client(pipeResponse, pipeRequest, timeout, time(NULL))
+{
+    shouldRun = true;
+}
 
 Client::Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout, unsigned int seed) : lindaCommunication(pipeResponse, pipeRequest), logger("Client" + std::to_string(getpid()) + ".log"), timeout(timeout) {
     srand(seed);
@@ -72,4 +75,8 @@ void Client::run(const std::string instructionsFileName) {
     }
 
     instructionsFile.close();
+}
+
+Client::~Client() {
+    logger.write("Client terminated");
 }

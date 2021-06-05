@@ -15,6 +15,8 @@
 #include "../response.hpp"
 #include "../LindaCommunication.h"
 
+static volatile bool shouldRun;
+
 class Client {
 private:
     LindaCommunication lindaCommunication;
@@ -23,6 +25,7 @@ private:
 public:
     Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout);
     Client(Pipe pipeResponse, Pipe pipeRequest, time_t timeout, unsigned int seed);
+    ~Client();
     void run();
     void run(int generatorSizeLimits[4]);
     void run(const std::string instructionsFileName);

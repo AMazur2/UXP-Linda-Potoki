@@ -18,6 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static volatile bool serverRun = true;
+
 class Server
 {
     private:
@@ -28,7 +30,7 @@ class Server
         std::map<pid_t, Pipe> inPipes;      // potok do serwera
         std::map<pid_t, Pipe> outPipes;     // potoki do klientów
         void sendResponse( Pipe p, Response r);
-
+        static void handleSignal(int sigNum);
     public:
         Server();      
 
