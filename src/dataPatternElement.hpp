@@ -5,7 +5,7 @@
 #include <boost/serialization/access.hpp>
 #include <boost/variant.hpp>
 
-enum class Condition {All, Equal, Less, LessEqual, Greater, GreaterEqual};
+enum class Condition {All, Equal, Less, LessEqual, Greater, GreaterEqual, Count};
 
 class DataPatternElement {
     boost::variant<std::string, int, double> value;

@@ -50,7 +50,7 @@ class Server
 
         void sendTuple(int tuple, pid_t t);
 
-        Pipe select(pid_t reciever);
+        Pipe select(pid_t receiver);
 
 };
 

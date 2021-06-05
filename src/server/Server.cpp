@@ -106,13 +106,16 @@ void Server::processOutput(Request orequest)
         DataPattern current_pattern = boost::get<DataPattern>((current->r).get_data());
         if(new_data.compare(current_pattern))
         {
-            if(current->priority == RequestAction::Read)
+            Response r(boost::get<Data>(orequest.get_data()));
+            Pipe p = select(current->r.get_pid());
+
+            sendResponse(p, r);
+
+            this->list.deleteQuery(current);
+
+            if(current->priority == RequestAction::Input)
             {
-                Response *r = new Response(orequest.get_data());
-                Pipe p = select(current->r.get_pid());
-                sendResponse(r, p);
-                this->list.deleteQuery(current);
-                send = true;
+                return;
             }
 
         }
