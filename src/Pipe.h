@@ -44,7 +44,7 @@ class Pipe
 
         void writePipe(const void* buf, unsigned long len);
 
-        bool readPipe(void* bufm, unsigned long len);
+        bool readPipe(void* buf , unsigned long len);
 
         bool checkPipe(unsigned checkout);
 

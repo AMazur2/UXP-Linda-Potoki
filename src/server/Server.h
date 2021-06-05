@@ -7,9 +7,10 @@
 
 #include "../Logger.h"
 #include "queryList.h"
-#include "Pipe.h"
-#include "data.hpp"
+#include "../Pipe.h"
+#include "../data.hpp"
 #include "../request.hpp"
+#include "../response.hpp"
 #include <iostream>
 #include <vector>
 #include <map>
@@ -21,9 +22,10 @@ class Server
         const std::string fileName = "server" + std::to_string(getpid()) + ".log";
         Logger logger;
         QueryList list;                     // lista zapytań
-        std::vector<Data> tuples;            // vector krotek             
+        std::vector<Data> tuples;           // vector krotek
         std::map<pid_t, Pipe> inPipes;      // potok do serwera
         std::map<pid_t, Pipe> outPipes;     // potoki do klientów
+        void sendResponse( Pipe p, Response r);
 
     public:
         Server();      
@@ -47,8 +49,6 @@ class Server
         void processRead(Request rrequest);
 
         void processOutput(Request orequest);
-
-        void sendTuple(int tuple, pid_t t);
 
         Pipe select(pid_t receiver);
 

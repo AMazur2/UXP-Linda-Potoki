@@ -67,8 +67,8 @@ void Server::processInput(Request irequest)
 
     Query* q = new Query(irequest, RequestAction::Input);
     
-    this->list.saveQuery(q); 
-    return;
+    this->list.saveQuery(q);
+
 }
 
 void Server::processRead(Request rrequest)
@@ -100,8 +100,7 @@ void Server::processOutput(Request orequest)
 {
     Data new_data = boost::get<Data>(orequest.get_data());
     Query *current = this->list.head;
-    bool send = false;
-    while(current != null)
+    while(current != nullptr)
     {
         DataPattern current_pattern = boost::get<DataPattern>((current->r).get_data());
         if(new_data.compare(current_pattern))
@@ -128,4 +127,18 @@ Pipe Server::select(pid_t receiver)
 {
     auto search = this->outPipes.find(receiver);
     return search->second;
+}
+
+void Server::sendResponse(Pipe p, Response r)
+{
+    std::stringstream stream;
+    boost::archive::text_oarchive t_oa(stream);
+
+    t_oa << r;
+    try {
+        p.writePipe(stream.str().c_str(), stream.str().size());
+    }
+    catch (std::exception &e) {
+        throw std::runtime_error(e.what());
+    }
 }

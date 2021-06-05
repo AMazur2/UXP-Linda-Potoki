@@ -127,19 +127,3 @@ void QueryList::deleteQuery(Query* q)
         delete q;
     }
 }
-/*
-void QueryList::showQuery()
-{
-    if(head != nullptr)
-    {
-        Query* currentQ = head;    
-        while(currentQ)
-        {
-            std::cout<< "Priority: " << currentQ->priotiry << "\tMessage: " << currentQ->c << std::endl;
-            currentQ = currentQ->nextQuery;
-        }
-    }
-    else
-        std::cout << "List is empty!" << std::endl;
-}
-*/

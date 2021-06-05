@@ -6,7 +6,7 @@
 #define QUERY_H
 
 #include <iostream>
-#include "request.hpp"
+#include "../request.hpp"
 
 class Query
 {
@@ -29,8 +29,6 @@ class QueryList
         ~QueryList();
         void saveQuery(Query* q);
         void deleteQuery(struct Query* q);
-        void showQuery();
-
 };
 
 #endif
