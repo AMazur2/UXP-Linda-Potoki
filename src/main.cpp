@@ -10,6 +10,11 @@ int main() {
     //utworzenie klientow
     //utworzenie serwera
     //oczekiwanie w petli na znak wyjsci
+    int c;
+    while((c = getchar()) != 'q')
+    {
+
+    }
     //Kill them All!
     return 0;
 }

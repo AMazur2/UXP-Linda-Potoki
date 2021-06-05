@@ -35,12 +35,12 @@ void QueryList::saveQuery(Query* q)
     if(head == nullptr)
     {
         head = q;
-        if(q->priotiry == RequestAction::Read)
+        if(q->priority == RequestAction::Read)
             lastRead = q;
         else
             lastInput = q;
     }
-    else if(q->priotiry == RequestAction::Read)
+    else if(q->priority == RequestAction::Read)
     {
         if(lastRead == nullptr)
         {

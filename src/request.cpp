@@ -15,3 +15,9 @@ pid_t Request::get_pid() {return pid;}
 
 time_t Request::get_timeout() {return timeout;}
 
+Request::Request(DataPattern data_pattern, RequestAction requestAction, pid_t process_id, time_t time)
+    : action{requestAction}, pid{process_id}, timeout{time} {
+
+    this->data = boost::variant<int, Data, DataPattern>( data_pattern);
+}
+

@@ -2,8 +2,8 @@
 #define CLIENT_HPP
 
 #include <random>
-#include <time.h>
-#include <stdlib.h>
+#include <ctime>
+#include <cstdlib>
 #include <ctime>
 #include <fstream>
 

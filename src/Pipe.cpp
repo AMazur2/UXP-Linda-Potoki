@@ -6,16 +6,16 @@
 
 #define CLOSED 0
 
-Pipe::Pipe() { }
+Pipe::Pipe() : logger(fileName) { }
 
-Pipe::Pipe(int key)
+Pipe::Pipe(int key) : logger(fileName)
 {
     number = key;
     if(pipe(pipeDescriptors) == -1)
         throw "Cannot open pipe";
 }
 
-Pipe::Pipe(int rd, int wd)
+Pipe::Pipe(int rd, int wd): logger(fileName)
 {
     pipeDescriptors[PipeEnd::Read] = rd;
     pipeDescriptors[PipeEnd::Write] = wd;
@@ -78,11 +78,11 @@ bool Pipe::checkPipe(unsigned timeout)
     int ret = select(pipeDescriptors[PipeEnd::Read]+1, &rfds, nullptr, nullptr, &tv);
 
     if(ret == -1)
-        throw std::runtime_error("Error occured while select() from pipe");
+        throw std::runtime_error("Error");
     else if(ret == 0)
     {
         return false;   // timeout
     }
-
+    read_from(buffer, length);
     return true;
 }

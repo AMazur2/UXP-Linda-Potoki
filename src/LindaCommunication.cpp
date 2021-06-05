@@ -16,18 +16,18 @@ int LindaCommunication::output(Request request)
 int LindaCommunication::input(Request request, Response &response)
 {
     if(send(request) == 0)
-        return receive(response);
+        return receive(response, request.get_timeout());
     return -1;
 }
 
 int LindaCommunication::read(Request request, Response &response)
 {
     if(send(request) == 0)
-        return receive(response);
+        return receive(response, request.get_timeout());
     return -1;
 }
 
-int LindaCommunication::receive(Response& r)
+int LindaCommunication::receive(Response& r, unsigned timeout)
 {
     char* buff = new char[PIPE_BUF];
     memset(buff, 0, PIPE_BUF);
@@ -36,19 +36,12 @@ int LindaCommunication::receive(Response& r)
     {
         inputPipe.readPipe(buff, PIPE_BUF);
     }
-    catch(std::exception& ex)
+    catch(std::runtime_error& ex)
     {
         return -1;
     }
 
-    std::stringstream inputStream;
-    inputStream << buff;
-
-    boost::archive::text_iarchive ia(inputStream);
-
-    ia >> r;
-
-    return 0;
+    return -1;
 }
 
 int LindaCommunication::send(Request request)

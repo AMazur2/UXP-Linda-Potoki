@@ -45,7 +45,7 @@ void Server::setPipes(std::map<pid_t, Pipe> in, std::map<pid_t, Pipe> out)
     this->outPipes = out;
 }
 
-void Server::processInput(Request irequest)
+void Server::processInput(Request &irequest)
 {
     int i = 0;
     DataPattern request_pattern = boost::get<DataPattern>(irequest.get_data());
@@ -71,7 +71,7 @@ void Server::processInput(Request irequest)
 
 }
 
-void Server::processRead(Request rrequest)
+void Server::processRead(Request &rrequest)
 {
     int i = 0;
     DataPattern request_pattern = boost::get<DataPattern>(rrequest.get_data());
@@ -96,7 +96,7 @@ void Server::processRead(Request rrequest)
     this->list.saveQuery(q);
 }
 
-void Server::processOutput(Request orequest)
+void Server::processOutput(Request &orequest)
 {
     Data new_data = boost::get<Data>(orequest.get_data());
     Query *current = this->list.head;

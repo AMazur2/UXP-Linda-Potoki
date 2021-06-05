@@ -12,7 +12,7 @@ private:
     Pipe inputPipe;
     Pipe outputPipe;
     int send(Request request);
-    int receive(Response &response);
+    int receive(Response &response, unsigned timeout);
 public:
     LindaCommunication(Pipe &inputPipe, Pipe &outputPipe);
     int output(Request request);

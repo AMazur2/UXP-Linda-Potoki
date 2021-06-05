@@ -12,7 +12,7 @@ void Client::start() {
     int max_real = 100;
     int max_string_size = 100;
     int generatorSizeLimits[4] = {max_tuple_size, max_int, max_real, max_string_size};
-    this->start(generatorSizeLimits);
+    this->run(generatorSizeLimits);
 }
 void Client::start(int generatorSizeLimits[4]) {
     int max_tuple_size = generatorSizeLimits[0];

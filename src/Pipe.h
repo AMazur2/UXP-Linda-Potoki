@@ -15,6 +15,9 @@
 #include <pthread.h>
 #include <errno.h>
 #include <cstring>
+#include "Logger.h"
+
+static int nr;
 
 enum PipeEnd 
 {
@@ -24,10 +27,10 @@ enum PipeEnd
 class Pipe
 {
     private:
-
-        static const int endClosed;
+        const std::string fileName = "pipe" + std::to_string(getpid()) + "_" +  std::to_string(nr++) + ".log";
         int number;
         int pipeDescriptors[2];
+        Logger logger;
 
     public:
         Pipe();
@@ -38,16 +41,37 @@ class Pipe
 
         ~Pipe();
 
+        Pipe(const Pipe& p) : logger(fileName)
+        {
+            this->number = p.number;
+            this->pipeDescriptors[0] = p.pipeDescriptors[0];
+            this->pipeDescriptors[1] = p.pipeDescriptors[1];
+        }
+
+    Pipe& operator=(const Pipe& other)
+    {
+        // Guard self assignment
+        if (this == &other)
+            return *this;
+
+        this->number = other.number;
+        this->pipeDescriptors[0] = other.pipeDescriptors[0];
+        this->pipeDescriptors[1] = other.pipeDescriptors[1];
+
+
+    }
+
         void closeDescriptors();
 
-        void closePipeEnd(PipeEnd pe);
+        void closeEnd(PipeEnd pe);
 
-        void writePipe(const void* buf, unsigned long len);
+        void write_to(const void* buf, unsigned long len);
 
-        bool readPipe(void* buf , unsigned long len);
+        bool read_from(void* buf , unsigned long len);
 
-        bool checkPipe(unsigned checkout);
+        bool readWithTimeout(void* buffer, unsigned long length, unsigned timeout);
 
+        int returnDescriptor(int i);
 };
 
 

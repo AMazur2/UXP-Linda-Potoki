@@ -14,7 +14,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <sys/select.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 class Server
 {
