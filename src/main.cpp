@@ -52,6 +52,8 @@ int main() {
     }
     //utworzenie serwera
     //oczekiwanie w petli na znak wyjsci
+
+    std::cout << "Write q to close the program: ";
     int c;
     while(getchar() != 'q');
 

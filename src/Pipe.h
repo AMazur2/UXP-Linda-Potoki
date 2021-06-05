@@ -17,7 +17,7 @@
 #include <cstring>
 #include "Logger.h"
 
-static int nr;
+
 
 enum PipeEnd 
 {
@@ -27,10 +27,8 @@ enum PipeEnd
 class Pipe
 {
     private:
-        const std::string fileName = "pipe" + std::to_string(getpid()) + "_" +  std::to_string(nr++) + ".log";
         int number;
         int pipeDescriptors[2];
-        Logger logger;
 
     public:
         Pipe();
@@ -41,7 +39,7 @@ class Pipe
 
         ~Pipe();
 
-        Pipe(const Pipe& p) : logger(fileName)
+        /*Pipe(const Pipe& p)
         {
             this->number = p.number;
             this->pipeDescriptors[0] = p.pipeDescriptors[0];
@@ -60,7 +58,7 @@ class Pipe
 
 
     }
-
+*/
         void closeDescriptors();
 
         void closeEnd(PipeEnd pe);

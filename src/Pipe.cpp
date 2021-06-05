@@ -1,21 +1,19 @@
 #include <limits.h>
 #include <stdexcept>
 #include "Pipe.h"
-#include <iostream>
-#include <sys/ipc.h>
 
 #define CLOSED 0
 
-Pipe::Pipe() : logger(fileName) { }
+Pipe::Pipe() { }
 
-Pipe::Pipe(int key) : logger(fileName)
+Pipe::Pipe(int key)
 {
     number = key;
     if(pipe(pipeDescriptors) == -1)
         throw std::runtime_error("Failed to open pipe");
 }
 
-Pipe::Pipe(int rd, int wd): logger(fileName)
+Pipe::Pipe(int rd, int wd)
 {
     pipeDescriptors[PipeEnd::Read] = rd;
     pipeDescriptors[PipeEnd::Write] = wd;
@@ -40,7 +38,6 @@ void Pipe::closeEnd(PipeEnd pe)
 
 void Pipe::write_to(const void* buffer, unsigned long length)
 {
-    logger.write("Trying to write to pipe");
     if(pipeDescriptors[PipeEnd::Write] != CLOSED)
     {
         if(length > PIPE_BUF)
@@ -51,7 +48,7 @@ void Pipe::write_to(const void* buffer, unsigned long length)
     }
     else
         throw std::runtime_error("Cannot write to closed write_to end");
-    logger.write("Written to pipe");
+
 }
 
 bool Pipe::read_from(void* buffer, unsigned long length)
