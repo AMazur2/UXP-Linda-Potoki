@@ -1,4 +1,5 @@
 #include<iostream>
+#include<sstream>
 #include<cstdarg>
 #include"data.hpp"
 
@@ -23,6 +24,12 @@ Data::Data(const char* fmt...) {
     va_end(args);
 }
 
+Data::Data(const std::vector<DataElement>& elements) {
+    for (auto & element : elements) {
+        values.push_back(element);
+    }
+}
+
 const DataElement& Data::operator[](std::size_t idx) const { return values[idx]; }
 
 Data::Data(const std::vector<DataElement>& elements) {
@@ -42,6 +49,13 @@ bool Data::compare(const DataPattern& pattern) const {
     return true;
 }
 
+
+std::string Data::to_string() {
+    std::stringstream ss;
+    ss << *this;
+    return ss.str();
+}
+
 std::ostream &operator<< (std::ostream &os, const Data& data) {
     os << "(";
     for (const auto & value : data.values) {
@@ -51,4 +65,4 @@ std::ostream &operator<< (std::ostream &os, const Data& data) {
     return os;
 }
 
-size_t Data::size() const { return values.size();}
+
