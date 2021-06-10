@@ -5,6 +5,7 @@
 #include <sstream>
 #include "dataGenerator.h"
 
+
 DataGenerator::DataGenerator(int max_tuple_size, int max_int, int max_real, int max_string_size) {
     gen = std::mt19937(rd());
     distrib_tuple_size = std::uniform_int_distribution<>(1, max_tuple_size);
@@ -12,6 +13,7 @@ DataGenerator::DataGenerator(int max_tuple_size, int max_int, int max_real, int 
     distrib_real = std::uniform_real_distribution<>(0, max_real);
     distrib_letter = std::uniform_int_distribution<>(static_cast<int>('a'), static_cast<int>('z'));
     distrib_string_size = std::uniform_int_distribution<>(1, max_string_size);
+
     distrib_condition = std::uniform_int_distribution<>(0, static_cast<int>(Condition::Count) - 1);
     distrib_type = std::uniform_int_distribution<>(0, static_cast<int>(Type::Count) - 1);
 }
@@ -86,3 +88,4 @@ DataPattern DataGenerator::next_data_pattern() {
     }
     return DataPattern(elements);
 }
+

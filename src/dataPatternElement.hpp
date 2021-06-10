@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utility>
 #include<variant>
 #include<string>
 #include <boost/serialization/access.hpp>
@@ -8,7 +9,9 @@
 enum class Condition {All, Equal, Less, LessEqual, Greater, GreaterEqual, Count};
 
 class DataPatternElement {
+
     boost::variant<std::string, int, double> value;
+
     Condition condition;
 
     friend class boost::serialization::access;
@@ -22,5 +25,6 @@ public:
     DataPatternElement() : condition(Condition::Count), value(0) {};
     boost::variant<std::string, int, double> get_value() {return value;}
     Condition get_condition()  {return condition;}
+
     friend std::ostream &operator<< (std::ostream &os, const DataPatternElement& element);
 };

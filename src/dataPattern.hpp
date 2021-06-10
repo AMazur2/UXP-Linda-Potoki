@@ -15,10 +15,13 @@ class DataPattern {
     }
 public:
     DataPattern();
+
     DataPattern(const char* fmt...);
+
     explicit DataPattern(const std::vector<DataPatternElement>& elements);
 
-    const DataPatternElement& operator[](std::size_t idx) const { return values[idx]; }
+    const DataPatternElement& operator[](std::size_t idx) const;
+    [[nodiscard]] size_t size() const;
 
     int size() const {return values.size();}
 

@@ -1,11 +1,16 @@
 #include"dataElement.hpp"
+
+#include <iostream>
+#include <utility>
 #include"dataPatternElement.hpp"
+
 
 DataElement::DataElement()
 {}
 
 DataElement::DataElement(boost::variant<std::string, int, double> s) : value{s} {}
 boost::variant<std::string, int, double> DataElement::get_value() {return value;}
+
 
 bool DataElement::compare(DataPatternElement pattern_element) const {
     if ( value.type() == typeid(int) && pattern_element.get_value().type() == typeid(int)
@@ -34,7 +39,7 @@ bool DataElement::compare(DataPatternElement pattern_element) const {
             case Condition::All:
                 return true;
             case Condition::Equal:
-                return element_string_value.compare(pattern_string_value) == 0;
+                return element_string_value == pattern_string_value;
             case Condition::Greater:
                 return element_string_value.compare(pattern_string_value) > 0;
             case Condition::GreaterEqual:
@@ -57,6 +62,7 @@ std::ostream &operator<< (std::ostream &os, const DataElement& element) {
         os << boost::get<int>(element.value);
     } else if (element.value.type() == typeid(double)) {
         os << boost::get<double>(element.value);
+
     }
     return os;
 }
